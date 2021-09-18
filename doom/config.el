@@ -25,7 +25,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-vibrant)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -33,8 +33,24 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type t)
+(setq display-line-numbers-type 'relative)
 
+;; enable fill-column-indicator (since emacs 27.1) in prog mode
+;; see https://www.gnu.org/software/emacs/manual/html_node/emacs/Displaying-Boundaries.html
+(add-hook 'prog-mode-hook (lambda ()
+        (setq fill-column 80)
+        (setq display-fill-column-indicator t)
+        (setq display-fill-column-indicator-column t)
+        ;; (display-fill-column-indicator-mode)
+        (global-display-fill-column-indicator-mode)
+))
+
+
+
+;; decrease delay for company https://emacs-china.org/t/doom-emacs-spacemacs/10956
+(setq company-idle-delay 0.05)
+
+;; Setting for packages
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -52,3 +68,21 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
+
+;; https://rameezkhan.me/adding-keybindings-to-doom-emacs/
+(map! :leader
+      ";" #'execute-extended-command
+      ":" #'pp-eval-expression)
+
+;; for solve <kbd>s</kbd> problem
+;; (after! evil-snipe (evil-snipe-mode -1))
+
+
+(when (eq system-type 'darwin)	; mac specific bindings
+  (setq mac-right-option-modifier 'meta ; right option = special characters
+))
+
+(use-package! counsel-spotify
+  :config
+  (setq counsel-spotify-client-id "98c039fb397d4fdc83204163b98598b1"
+        counsel-spotify-client-secret "e79d6063b6a440d39c85f1f8453c3678"))

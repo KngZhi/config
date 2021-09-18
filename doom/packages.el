@@ -7,8 +7,6 @@
 
 
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
-;(package! some-package)
-
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
 ;; https://github.com/raxod502/straight.el#the-recipe-format
@@ -48,3 +46,15 @@
 ;(unpin! pinned-package another-pinned-package)
 ;; ...Or *all* packages (NOT RECOMMENDED; will likely break things)
 ;(unpin! t)
+(package! osx-dictionary)
+(package! counsel-spotify)
+
+;; (use-package! counsel-spotify
+;;   :config
+;;   (setq counsel-spotify-client-id "98c039fb397d4fdc83204163b98598b1"
+;;         counsel-spotify-client-secret "e79d6063b6a440d39c85f1f8453c3678"))
+
+;; disable conflict with <kbd>s</kbd> conflict
+;; https://github.com/hlissner/doom-emacs/issues/1642#issuecomment-518711170
+(package! evil-snipe :disable t)
+
