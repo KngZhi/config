@@ -29,7 +29,12 @@
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
-(setq org-directory "~/org/")
+(setq org-directory "~/org")
+;; Recursivly search all org files at [https://stackoverflow.com/a/41969519]
+(setq org-agenda-files (directory-files-recursively "~/org/" "\\.org$"))
+
+(setq org-log-done t)
+
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
@@ -41,16 +46,23 @@
         (setq fill-column 80)
         (setq display-fill-column-indicator t)
         (setq display-fill-column-indicator-column t)
-        ;; (display-fill-column-indicator-mode)
+        (display-fill-column-indicator-mode)
         (global-display-fill-column-indicator-mode)
 ))
 
 
-
 ;; decrease delay for company https://emacs-china.org/t/doom-emacs-spacemacs/10956
-(setq company-idle-delay 0.05)
+(setq company-idle-delay 0.05
+      company-show-numbers t)
 
-;; Setting for packages
+;; Setting for Eww
+;; (setq browse-url-browser-function 'eww-browse-url ; Use eww as the default browser
+;;         shr-use-fonts  nil                          ; No special fonts
+;;         shr-use-colors nil                          ; No colours
+;;         shr-indentation 2                           ; Left-side margin
+;;         shr-width 80                                ; Fold text to 70 columns
+;;         eww-search-prefix "https://wiby.me/?q=")    ; Use another engine for searching
+
 
 ;; Here are some additional functions/macros that could help you configure Doom:
 ;;
@@ -72,17 +84,28 @@
 ;; https://rameezkhan.me/adding-keybindings-to-doom-emacs/
 (map! :leader
       ";" #'execute-extended-command
-      ":" #'pp-eval-expression)
+      ":" #'pp-eval-expression
+      )
 
 ;; for solve <kbd>s</kbd> problem
 ;; (after! evil-snipe (evil-snipe-mode -1))
 
-
-(when (eq system-type 'darwin)	; mac specific bindings
+(when (eq system-type 'darwin)  ; mac specific bindings
   (setq mac-right-option-modifier 'meta ; right option = special characters
 ))
+
 
 (use-package! counsel-spotify
   :config
   (setq counsel-spotify-client-id "98c039fb397d4fdc83204163b98598b1"
         counsel-spotify-client-secret "e79d6063b6a440d39c85f1f8453c3678"))
+
+;; setting for telega
+(setq telega-proxies
+      (list
+       '(:server "127.0.0.1" :port 7891 :enable t
+                 :type (:@type "proxyTypeSocks5"
+                               :username "" :password ""))
+       ))
+
+(setq org-highlight-latex-and-related '(latex script entities))

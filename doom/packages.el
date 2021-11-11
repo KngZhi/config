@@ -48,13 +48,17 @@
 ;(unpin! t)
 (package! osx-dictionary)
 (package! counsel-spotify)
-
-;; (use-package! counsel-spotify
-;;   :config
-;;   (setq counsel-spotify-client-id "98c039fb397d4fdc83204163b98598b1"
-;;         counsel-spotify-client-secret "e79d6063b6a440d39c85f1f8453c3678"))
-
 ;; disable conflict with <kbd>s</kbd> conflict
 ;; https://github.com/hlissner/doom-emacs/issues/1642#issuecomment-518711170
 (package! evil-snipe :disable t)
+(package! telega)
+(package! smex)
 
+;; inorder to fix Could not find package gitconfig-mode.
+;; https://github.com/hlissner/doom-emacs/issues/5667
+(package! gitconfig-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitconfig-mode.el")))
+(package! gitignore-mode
+	  :recipe (:host github :repo "magit/git-modes"
+			 :files ("gitignore-mode.el")))
