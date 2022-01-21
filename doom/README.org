@@ -1,0 +1,45 @@
+#+TITLE: DOOM Emacs
+
+  the goal of this file is to introduce my personal experience for how to jump
+  Emacs really quick.
+
+* Problems for Chinese user
+
+** Solving DOOM connection lagging
+
+#+begin_src sh
+[url "https://hub.fastgit.org/"]
+  insteadof = https://github.com/
+#+end_src
+
+[[https://emacs-china.org/t/doom-emacs/16069][处理方法]], 使用国内[[https://doc.fastgit.org/zh-cn/guide.html#web-%E7%9A%84%E4%BD%BF%E7%94%A8][镜像地址]]做代理，原地址中 /npmjs/ 已经下架了
+
+** TODO using emacs-rime or anything
+** TODO support pyin-search
+
+* Editing [0%]
+
+** align keybindings for /insert mode/
+#+begin_src elisp
+#+end_src
+
+C-h     -> 删除前面一个
+C-k     -> 删除后面所有的内容
+
+* Dired
+
+- how to move files into another folder
+
+  Using =m= mark the files and hit =R= to move or rename
+
+- dired [[https://www.gnu.org/software/emacs/refcards/pdf/dired-ref.pdf]]
+
+* Org
+- how to add =SCHEDULE= or =DEADLINE= or other status in todo item?
+  =<S m d s>= =<S m d d>=
+- how to add timerange at current task
+  #+begin_src org
+    SCHEDULED: <2021-09-21 Tue 14:00-16:00>
+  #+end_src
+* Agenda
+* Cheatsheet
