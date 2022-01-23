@@ -15,6 +15,15 @@
 [[https://emacs-china.org/t/doom-emacs/16069][处理方法]], 使用国内[[https://doc.fastgit.org/zh-cn/guide.html#web-%E7%9A%84%E4%BD%BF%E7%94%A8][镜像地址]]做代理，原地址中 /npmjs/ 已经下架了
 
 ** TODO using emacs-rime or anything
+
+
+#+begin_quote
+tool 'xcodebuild' requires Xcode, but active developer directory
+'/Library/Developer/CommandLineTools
+#+end_quote
+
+~sudo xcode-select -s /Applications/Xcode.app/Contents/Developer~ [[https://stackoverflow.com/questions/17980759/xcode-select-active-developer-directory-error][[sof]]]
+
 ** TODO support pyin-search
 
 * Editing [0%]
