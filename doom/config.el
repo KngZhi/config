@@ -41,7 +41,7 @@
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
-(setq display-line-numbers-type 'relative)
+(setq display-line-numbers-type 'visual)
 
 ;; enable fill-column-indicator (since emacs 27.1) in prog mode
 ;; see https://www.gnu.org/software/emacs/manual/html_node/emacs/Displaying-Boundaries.html
@@ -159,3 +159,5 @@ The location for a browser's bookmark should look like this:
                             (url-hexify-string current-file)
                             (org-html-encode-plain-text current-file)))))
     fields))
+(after! org
+  (setf (alist-get 'file org-link-frame-setup) #'find-file-other-window))
