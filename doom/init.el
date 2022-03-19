@@ -190,4 +190,5 @@
 
        :junwei.chen
        bindings
-       org)
+       org
+       ui)

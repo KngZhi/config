@@ -43,16 +43,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type 'visual)
 
-;; enable fill-column-indicator (since emacs 27.1) in prog mode
-;; see https://www.gnu.org/software/emacs/manual/html_node/emacs/Displaying-Boundaries.html
-(add-hook 'prog-mode-hook (lambda ()
-        (setq fill-column 80)
-        (setq display-fill-column-indicator t)
-        (setq display-fill-column-indicator-column t)
-        (display-fill-column-indicator-mode)
-        (global-display-fill-column-indicator-mode)
-))
-
 
 ;; decrease delay for company https://emacs-china.org/t/doom-emacs-spacemacs/10956
 (setq company-idle-delay 0.05
