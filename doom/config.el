@@ -85,10 +85,12 @@
 ;; they are implemented.
 
 ;; https://rameezkhan.me/adding-keybindings-to-doom-emacs/
-(map! :leader
-      ";" #'execute-extended-command
-      ":" #'pp-eval-expression
-      )
+;; TODO: 要设置 when 对于 super(command)
+(map!
+        (:leader
+                ";" #'execute-extended-command
+                ":" #'pp-eval-expression)
+        (:i "s-;" #'execute-extended-command))
 
 ;; for solve <kbd>s</kbd> problem
 ;; (after! evil-snipe (evil-snipe-mode -1))
