@@ -1,4 +1,6 @@
 ;;; junwei.chen/org/config.el -*- lexical-binding: t; -*-
+(require 'request)
+
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -31,10 +33,23 @@
 ;; https://github.com/cnsunyour/.doom.d/blob/5057fecb5b90d9f013a529d54aac948ac40dbd09/modules/cnsunyour/org/config.el#L336
 
 ;; Org Roam
+;; https://coredumped.dev/2021/05/26/taking-org-roam-everywhere-with-logseq/
 (use-package! org-roam
-  :init
-        (setq org-roam-directory "~/org/org-roam")
-        (org-roam-db-autosync-mode))
+  :init (setq org-roam-directory "~/org/org-roam"
+              org-roam-dailies-directory "journals/")
+  :custom
+  (org-roam-complete-everywhere t)
+  ;; https://systemcrafters.net/build-a-second-brain-in-emacs/capturing-notes-efficiently/
+  (org-roam-capture-templates
+        '(("d" "default" plain
+           #'org-roam-capture--get-target "%?"
+           :file-name "pages/${slug}" :head "#+title: ${title}\n" :unnarrowed t)
+          ("b" "book notes" plain
+           "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+           :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+           :unnarrowed t)))
+  :config
+  (org-roam-db-autosync-mode))
 
 ;; org-protocol support for opening a file - needed for ‘my-anki-editor-backlink’.
 ;; https://org-roam.discourse.group/t/org-roam-and-anki/589/4
@@ -95,12 +110,10 @@
                                    :time-grid t
                                    :todo "TODO"
                                    :scheduled t))))
+(map! :mode org-mode
+      :ni "s-i" #'org-roam-node-insert)
 
 (use-package! org
-  :init
-  (map! (:map (org-mode-map) :i
-         "s-i" #'org-roam-node-insert
-         "C-h" #'delete-backward-char))
   :config (setq org-log-done t)
   :after (setf (alist-get 'file org-link-frame-setup) #'find-file-other-window))
 

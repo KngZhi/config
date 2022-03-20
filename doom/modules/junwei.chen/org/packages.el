@@ -8,3 +8,5 @@
   :recipe (:host github :repo "Townk/org-ol-tree"))
 
 (package! org-super-agenda)
+
+(require 'org-habit)
